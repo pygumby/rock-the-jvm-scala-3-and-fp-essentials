@@ -4,11 +4,11 @@ object ValuesAndTypes {
   // Values
   val meaningOfLife: Int = 42
 
-  // Assigning is not allowed
+  // Assigning is not allowed.
   // meaningOfLife = 45
 
   // Type inference
-  val anInteger = 67 // `: Int` is optional
+  val anInteger = 67 // `: Int` is optional.
 
   // Common types (mapped to JVM primitive types)
   val aBoolean: Boolean = false
