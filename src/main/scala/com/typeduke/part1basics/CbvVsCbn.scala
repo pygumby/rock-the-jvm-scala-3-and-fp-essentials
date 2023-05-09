@@ -10,15 +10,15 @@ object CbvVsCbn {
   val anotherComputation = aByNameFunction(23 + 67)
 
   def printTwiceByValue(x: Long): Unit = {
-    println(f"By value: $x")
-    println(f"By value: $x")
+    println(s"By value: $x")
+    println(s"By value: $x")
   }
 
   // Argument evaluation is delayed.
   // Argument is evaluated every time it is used.
   def printTwiceByName(x: => Long): Unit = {
-    println(f"By name: $x")
-    println(f"By name: $x")
+    println(s"By name: $x")
+    println(s"By name: $x")
   }
 
   def infinite(): Int = 1 + infinite()
