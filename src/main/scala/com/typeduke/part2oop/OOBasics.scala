@@ -4,7 +4,7 @@ object OOBasics {
   // Class
   class Person(val name: String, age: Int) { // Constructor signature
     // Auxiliary constructors
-    // Use of aux ctors in Scala is rare due to the limitation that they can really only call other ctors.
+    // Use of aux ctors in Scala is rare due as they can really only call other ctors.
     // Essentially, the same behavior can be achieved using default args.
     def this(name: String) =
       this(name, 0)

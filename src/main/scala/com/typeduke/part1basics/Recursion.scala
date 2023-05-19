@@ -12,7 +12,8 @@ object Recursion {
     @tailrec
     def sumUntilTailRec(x: Int, acc: Int): Int =
       if (x <= 0) acc
-      else sumUntilTailRec(x - 1, acc + x) // Tail recursion = recursive call occurs LAST in its code path.
+      else sumUntilTailRec(x - 1, acc + x)
+      // Tail recursion = recursive call occurs LAST in its code path.
       // No further stack frames are necessary = no more risk of stack overflows
 
     sumUntilTailRec(n, 0)
