@@ -1,12 +1,10 @@
-val scala3Version = "3.0.0"
+organization := "com.typeduke"
 
-lazy val root = project
-  .in(file("."))
-  .settings(
-    name := "rock-the-jvm-scala-3-and-fp-essentials",
-    version := "0.1.0",
+name := "rock-the-jvm-scala-3-and-fp-essentials"
 
-    scalaVersion := scala3Version,
+version := "0.0.1"
 
-    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
-  )
+scalaVersion := "3.2.2"
+
+// libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
+// libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rock-the-jvm-scala-3-and-fp-essentials.iml" filepath="$PROJECT_DIR$/.idea/modules/rock-the-jvm-scala-3-and-fp-essentials.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rock-the-jvm-scala-3-and-fp-essentials-build.iml" filepath="$PROJECT_DIR$/.idea/modules/rock-the-jvm-scala-3-and-fp-essentials-build.iml" />
-    </modules>
-  </component>
-</project>
