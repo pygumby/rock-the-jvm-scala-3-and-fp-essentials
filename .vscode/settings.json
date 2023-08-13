@@ -16,6 +16,9 @@
 
   // Line length
   "editor.rulers": [ 100 ],
+    "[markdown]": {
+    "editor.wordWrap": "off"
+  },
 
   // Whitespace
   "editor.renderWhitespace": "boundary",
