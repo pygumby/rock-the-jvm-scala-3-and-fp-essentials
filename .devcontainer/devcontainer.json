@@ -4,10 +4,13 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "Exelord.git-commits",
-        "GitHub.copilot",
-        "scala-lang.scala",
-        "scalameta.metals"
+        // Scala
+        "scala-lang.scala@0.5.6",
+        "scalameta.metals@1.23.0",
+        // Git
+        "Exelord.git-commits"
+        // Various
+        // "GitHub.copilot" // Uncomment to use GitHub Copilot
       ]
     }
   },
