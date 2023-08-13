@@ -16,7 +16,7 @@
 
   // Line length
   "editor.rulers": [ 100 ],
-    "[markdown]": {
+  "[markdown]": {
     "editor.wordWrap": "off"
   },
 
