@@ -37,5 +37,97 @@ object OOBasics {
     println(johnSaysHi)
 
     println(genericPerson.greet())
+
+    // Exercise 1
+    val charlesDickens = new Writer("Charles", "Dickens", 1812)
+    val charlesDickensImpostor = new Writer("Charles", "Dickens", 2021)
+    val novel = new Novel("Great Expectations", 1861, charlesDickens)
+    val newEdition = novel.copy(1871)
+    println(charlesDickens.fullName)
+    println(novel.authorAge)
+    println(novel.isWrittenBy(charlesDickensImpostor))
+    println(novel.isWrittenBy(charlesDickens))
+    println(newEdition.authorAge)
+
+    // Exercise 2
+    val counter = new Counter()
+    counter.print()
+    counter.increment().print()
+    counter.increment() // `increment()` always returns new instances,...
+    counter.print() // ...hence, the original instance will keep printing `0`.
+    counter.increment(10).print()
   }
+}
+
+/* 1) Novel and Writer classes
+
+  Imagine we're creating a backend for a book publishing house.
+  Create a Novel and a Writer class.
+
+  Writer:
+  - Fields:
+    - first name
+    - surname
+    - year
+  - Methods:
+    - full name
+
+  Novel:
+  - Fields:
+    - name
+    - year of release
+    - author
+  - Methods:
+    - author age
+    - is written by (author)
+    - copy (new year of release) = new instance of Novel
+ */
+
+class Writer(val firstName: String, val lastName: String, val yearOfBirth: Int) {
+  def fullName: String = s"${this.firstName} ${this.lastName}"
+}
+
+class Novel(val title: String, val yearOfRelease: Int, val author: Writer) {
+  def authorAge: Int =
+    this.yearOfRelease - author.yearOfBirth
+
+  def isWrittenBy(author: Writer): Boolean =
+    this.author == author
+
+  def copy(newYear: Int): Novel =
+    new Novel(title, newYear, author)
+}
+
+/* 2) Immutable counter class
+
+  Create an immutable counter class with the following requirements:
+
+  - Constructed with an initial count
+  - increment/decrement = new instance of counter
+  - increment(n)/decrement(n) = new instance of counter
+  - print()
+
+  Benefits of immutable data:
+  - Works very well in distributed environments
+  - Results in easier to read and understand code
+ */
+
+class Counter(val count: Int = 0) {
+  def increment(): Counter =
+    new Counter(this.count + 1)
+
+  def decrement(): Counter =
+    if (this.count == 0) this
+    else new Counter(this.count - 1)
+
+  def increment(n: Int): Counter =
+    if (n <= 0) this
+    else this.increment().increment(n - 1) // Volunerable to stack overflow errors
+
+  def decrement(n: Int): Counter =
+    if (n <= 0) this
+    else this.decrement().decrement(n - 1)
+
+  def print(): Unit =
+    println(s"Current count: ${this.count}")
 }
