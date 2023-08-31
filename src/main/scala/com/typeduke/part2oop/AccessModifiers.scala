@@ -22,10 +22,10 @@ object AccessModifiers {
       extends Person(name) {
     val mom = new Person(this.momName)
     val dad = new Person(this.dadName)
-    
+
     // Problem: Inside `KidWithParents`, `sayHi()` can only be called via `this`.
-    // def everyoneSayHi(): String = 
-      // s"${this.sayHi()} And here are my parents: ${mom.sayHi()} ${dad.sayHi()}"
+    // def everyoneSayHi(): String =
+    //   s"${this.sayHi()} And here are my parents: ${mom.sayHi()} ${dad.sayHi()}"
   }
 
   def main(args: Array[String]): Unit = {

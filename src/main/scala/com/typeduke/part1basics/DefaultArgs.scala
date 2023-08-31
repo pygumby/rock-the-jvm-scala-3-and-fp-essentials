@@ -10,7 +10,13 @@ object DefaultArgs {
   val sumUntil100 = sumUntilTailRec(100) // The additional argument is passed automatically.
 
   // When you use a function mostly with the same arguments, use default arguments.
-  def savePicture(path: String, name: String, format: String = "jpg", width: Int = 1920, height: Int = 1080): Unit =
+  def savePicture(
+      path: String,
+      name: String,
+      format: String = "jpg",
+      width: Int = 1920,
+      height: Int = 1080
+  ): Unit =
     println(s"Saving picture in format $format and path $path.")
 
   def main(args: Array[String]): Unit = {
