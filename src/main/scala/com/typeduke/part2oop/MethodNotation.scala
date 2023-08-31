@@ -31,7 +31,7 @@ object MethodNotation {
     def isAlive: Boolean =
       true
 
-    // apply
+    // `apply`
     def apply(): String =
       s"Hi, my name is ${this.name} and I really enjoy ${this.favoriteMovie}."
 
@@ -76,7 +76,7 @@ object MethodNotation {
     println(mary.isAlive)
     println(mary isAlive)
 
-    // apply
+    // `apply`
     println(mary.apply())
     println(mary())
 

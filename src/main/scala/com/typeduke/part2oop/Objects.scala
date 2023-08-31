@@ -2,7 +2,7 @@ package com.typeduke.part2oop
 
 object Objects {
   // Object/singleton != class instance
-  // An object defines a type as well as the only instance of it:
+  // An object defines a type as well as the only instance of it.
   object MySingleton {
     val aField = 45
 
@@ -16,7 +16,7 @@ object Objects {
   val theSingletonField = MySingleton.aField
   val theSingletonMethodCall = MySingleton.aMethod(99)
 
-  // Companions = Class and object of the same name
+  // Companions = class and object of the same name
   // They can access each other's private fields and methods.
   class Person(name: String) {
     def sayHi(): String = s"Hi, my name is ${this.name}."

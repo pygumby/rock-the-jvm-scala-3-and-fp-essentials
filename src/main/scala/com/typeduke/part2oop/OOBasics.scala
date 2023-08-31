@@ -54,7 +54,7 @@ object OOBasics {
     counter.print()
     counter.increment().print()
     counter.increment() // `increment()` always returns new instances,...
-    counter.print() // ...hence, the original instance will keep printing `0`.
+    counter.print() // ...hence, the original instance will keep printing 0.
     counter.increment(10).print()
   }
 }

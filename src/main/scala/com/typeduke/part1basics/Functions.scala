@@ -1,7 +1,7 @@
 package com.typeduke.part1basics
 
 object Functions {
-  // Function = Reusable piece of code that you can invoke with some arguments and return a result
+  // Function = reusable piece of code that you can invoke with some arguments and return a result
   def aFunction(a: String, b: Int): String =
     a + " " + b // Function bodies are ALWAYS one expression.
 

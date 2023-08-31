@@ -42,7 +42,7 @@ object Inheritance {
 
     override def eat(): Unit = println("I can eat anything, I'm a croc!")
 
-    // Overloading: creating methods with the same name, different signatures
+    // Overloading = creating methods with the same name, different signatures
     def eat(animal: Animal): Unit = println("I'm eating this poor fella!")
 
     /* Exercise 1

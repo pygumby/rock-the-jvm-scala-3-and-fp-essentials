@@ -2,15 +2,15 @@ package com.typeduke.part2oop
 
 object AccessModifiers {
   class Person(val name: String) {
-    // protected = access inside a class and its children
+    // `protected` = access inside a class and its children
     protected def sayHi(): String = s"Hi, my name is ${this.name}."
 
-    // private = access only inside a class
+    // `private` = access only inside a class
     private def watchNetflix(): String = "I'm binge-watching my favorite show..."
   }
 
   class Kid(override val name: String, age: Int) extends Person(name) {
-    def greetPolitely(): String = // No modifier = public
+    def greetPolitely(): String = // No modifier = `public`
       s"${this.sayHi()} I love to play."
   }
 
@@ -29,7 +29,7 @@ object AccessModifiers {
   }
 
   def main(args: Array[String]): Unit = {
-    // println(aPerson.sayHi()) // No longer works as `sayHi()` is now protected.
+    // println(aPerson.sayHi()) // No longer works as `sayHi()` is now `protected`.
     println(aKid.greetPolitely())
   }
 }
