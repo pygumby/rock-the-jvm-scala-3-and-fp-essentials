@@ -59,28 +59,29 @@ object OOBasics {
   }
 }
 
-/* 1) Novel and Writer classes
-
-  Imagine we're creating a backend for a book publishing house.
-  Create a Novel and a Writer class.
-
-  Writer:
-  - Fields:
-    - first name
-    - surname
-    - year
-  - Methods:
-    - full name
-
-  Novel:
-  - Fields:
-    - name
-    - year of release
-    - author
-  - Methods:
-    - author age
-    - is written by (author)
-    - copy (new year of release) = new instance of Novel
+/* Exercise 1
+ * Novel and Writer classes
+ *
+ * Imagine we're creating a backend for a book publishing house.
+ * Create a Novel and a Writer class.
+ *
+ * Writer:
+ * - Fields:
+ *   - first name
+ *   - surname
+ *   - year
+ * - Methods:
+ *   - full name
+ *
+ * Novel:
+ * - Fields:
+ *   - name
+ *   - year of release
+ *   - author
+ * - Methods:
+ *   - author age
+ *   - is written by (author)
+ *   - copy (new year of release) = new instance of Novel
  */
 
 class Writer(val firstName: String, val lastName: String, val yearOfBirth: Int) {
@@ -98,18 +99,19 @@ class Novel(val title: String, val yearOfRelease: Int, val author: Writer) {
     new Novel(title, newYear, author)
 }
 
-/* 2) Immutable counter class
-
-  Create an immutable counter class with the following requirements:
-
-  - Constructed with an initial count
-  - increment/decrement = new instance of counter
-  - increment(n)/decrement(n) = new instance of counter
-  - print()
-
-  Benefits of immutable data:
-  - Works very well in distributed environments
-  - Results in easier to read and understand code
+/* Exercise 2
+ * Immutable counter class
+ *
+ * Create an immutable counter class with the following requirements:
+ *
+ * - Constructed with an initial count
+ * - increment/decrement = new instance of counter
+ * - increment(n)/decrement(n) = new instance of counter
+ * - print()
+ *
+ * Benefits of immutable data:
+ * - Works very well in distributed environments
+ * - Results in easier to read and understand code
  */
 
 class Counter(val count: Int = 0) {

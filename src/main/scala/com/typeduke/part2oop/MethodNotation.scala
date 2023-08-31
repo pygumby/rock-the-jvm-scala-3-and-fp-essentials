@@ -42,14 +42,15 @@ object MethodNotation {
   val mary = new Person("Mary", 34, "Inception")
   val john = new Person("John", 36, "Fight Club")
 
-  /* 1) New methods for class Person
-
-    - A `+` method that returns that person with a nickname
-      E.g., `mary + "the rockstar` = new Person("mary the rockstar", _, _)
-    - A unary `+` method that increases the person's age
-      E.g., `+mary` = new Person(_, _, age + 1)
-    - An `apply` method with an Int argument
-      E.g., `mary(2)` = "Mary watched Inception 2 times"
+  /* Exercise 1
+   * New methods for class Person
+   *
+   * - A `+` method that returns that person with a nickname
+   *   E.g., `mary + "the rockstar` = new Person("mary the rockstar", _, _)
+   * - A unary `+` method that increases the person's age
+   *   E.g., `+mary` = new Person(_, _, age + 1)
+   * - An `apply` method with an Int argument
+   *   E.g., `mary(2)` = "Mary watched Inception 2 times"
    */
 
   def main(args: Array[String]): Unit = {

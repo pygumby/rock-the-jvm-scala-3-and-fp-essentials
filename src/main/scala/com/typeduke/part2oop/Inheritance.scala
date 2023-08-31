@@ -45,15 +45,16 @@ object Inheritance {
     // Overloading: creating methods with the same name, different signatures
     def eat(animal: Animal): Unit = println("I'm eating this poor fella!")
 
-    /* 1) Which method overloads are legal?
-
-      def eat(dog: Dog): Unit = println("Eating a dog...")
-      def eat(person: Person): Unit = println(s"I'm eating a human with the name ${person.name}.")
-      def eat(person: Person, dog: Dog): Unit = println("I'm eating a human AND a dog.")
-      def eat(): Int = 45
-      def eat(dog: Dog, person: Person): Unit = println("I'm eating a human AND a dog.")
-
-      All except the fourth variant, as it's signature doesn't differ from the super method.
+    /* Exercise 1
+     * Which method overloads are legal?
+     *
+     * def eat(dog: Dog): Unit = println("Eating a dog...")
+     * def eat(person: Person): Unit = println(s"I'm eating a human with the name ${person.name}.")
+     * def eat(person: Person, dog: Dog): Unit = println("I'm eating a human AND a dog.")
+     * def eat(): Int = 45
+     * def eat(dog: Dog, person: Person): Unit = println("I'm eating a human AND a dog.")
+     *
+     * All except the fourth variant, as it's signature doesn't differ from the super method.
      */
   }
 

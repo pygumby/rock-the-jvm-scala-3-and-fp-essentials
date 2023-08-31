@@ -30,24 +30,22 @@ object Expressions {
 
   // Everything is an expression...
 
-  // Exercises
-  // Without running the code, what do you think these values will print?
+  /* Exercise 1
+   * Without running the code, what do you think these values will print?
+   */
 
-  // 1) `true`
-
+  // true
   val someValue = {
     2 < 3
   }
 
-  // 2) `42`
-
+  // 42
   val someOtherValue = {
     if (someValue) 239 else 986
     42
   }
 
-  // 3) `Scala`, followed by `()` (the one possible value of the Unit type)
-
+  // "Scala", followed by `()` (the one possible value of the Unit type)
   val yetAnotherValue =
     println("Scala")
 

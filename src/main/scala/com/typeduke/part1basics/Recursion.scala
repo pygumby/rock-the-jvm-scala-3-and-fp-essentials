@@ -32,9 +32,9 @@ object Recursion {
     sumNumbersBetweenTailRec(a, 0)
   }
 
-  // Exercises
-
-  // 1) Concatenate a string n times
+  /* Exercise 1
+   * Concatenate a string n times
+   */
 
   def concat(str: String, n: Int): String = {
     @tailrec
@@ -45,7 +45,9 @@ object Recursion {
     concatTailRec(n, "")
   }
 
-  // 2) Fibonacci function, tail recursive
+  /* Exercise 2
+   * Fibonacci function, tail recursive
+   */
 
   def fib(n: Int): Int = {
     def fibTailRec(i: Int, last: Int, prev: Int): Int =
@@ -56,9 +58,11 @@ object Recursion {
     else fibTailRec(2, 1, 1)
   }
 
-  // 3) Is the isPrime function tail recursive or not?
-  // Yes, because the `&&` operation in the helper function's `else` branch is short-circuiting.
+  /* Exercise 3
+   * Is the isPrime function tail recursive or not?
+   */
 
+  // Yes, because the `&&` operation in the helper function's `else` branch is short-circuiting.
   def isPrime(n: Int): Boolean = {
     def isPrimeUntil(t: Int): Boolean =
       if (t <= 1) true

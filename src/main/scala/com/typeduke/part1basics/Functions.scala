@@ -37,15 +37,20 @@ object Functions {
     aSmallerFunction(n, n + 1)
   }
 
-  // Exercises
-
-  // 1) A greeting function (name, age) => "Hi, my name is $name and I'm $age years old."
+  /*
+   * Exercise 1
+   * A greeting function (name, age) => "Hi, my name is $name and I'm $age years old."
+   */
 
   def greet(name: String, age: Int): String = s"Hi, my name is $name and I'm $age years old."
 
   assert(greet("Lucas", 31) == "Hi, my name is Lucas and I'm 31 years old.")
 
-  // 2) Factorial function n => 1 * 2 * ... * n
+  /* Exercise 2
+   * Factorial function
+   *
+   * n => 1 * 2 * ... * n
+   */
 
   def fact(n: Int): Int = n match {
     case 0 => 0
@@ -56,11 +61,14 @@ object Functions {
   assert(fact(0) == 0)
   assert(fact(5) == 120)
 
-  // 3) Fibonacci function
-  //    fib(1) = 1
-  //    fib(2) = 1
-  //    fib(3) = 1 + 1
-  //    fib(n) = fib(n - 1) + fib(n - 2)
+  /* Exercise 3
+   * Fibonacci function
+   *
+   * fib(1) = 1
+   * fib(2) = 1
+   * fib(3) = 1 + 1
+   * fib(n) = fib(n - 1) + fib(n - 2)
+   */
 
   def fib(n: Int): Int =
     if (n <= 2) 1
@@ -69,7 +77,9 @@ object Functions {
   assert(fib(42) == 267914296)
   assert(fib(5) == 5)
 
-  // 4) A function testing whether a number is a prime number
+  /* Exercise 4
+   * A function testing whether a number is a prime number
+   */
 
   def isPrime(n: Int): Boolean = {
     def isPrimeUntil(t: Int): Boolean =
