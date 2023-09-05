@@ -20,12 +20,18 @@ import scala.annotation.tailrec
  * `[1, 2, 3].flatMap(n => [n, n + 1]) => (1, 2, 2, 3, 3, 4)`
  */
 
+/* Exercise 2
+ * Case classes
+ * 
+ * Find out where case classes make sense for `LList` and apply the respective changes.
+ */
+
 // Singly linked list
 abstract class LList[A] {
   def head: A
   def tail: LList[A]
   def isEmpty: Boolean
-  def add(element: A): LList[A] = new Cons(element, this)
+  def add(element: A): LList[A] = Cons(element, this)
 
   infix def ++(other: LList[A]): LList[A]
 
@@ -34,31 +40,31 @@ abstract class LList[A] {
   def flatMap[B](transformer: Transformer[A, LList[B]]): LList[B]
 }
 
-class Empty[A] extends LList[A] {
+case class Empty[A]() extends LList[A] {
   override def head: A = throw new NoSuchElementException
   override def tail: LList[A] = throw new NoSuchElementException
   override def isEmpty: Boolean = true
 
   override def ++(other: LList[A]): LList[A] = other
 
-  override def map[B](transformer: Transformer[A, B]): LList[B] = new Empty[B]
+  override def map[B](transformer: Transformer[A, B]): LList[B] = Empty()
   override def filter(predicate: Predicate[A]): LList[A] = this
-  override def flatMap[B](transformer: Transformer[A, LList[B]]): LList[B] = new Empty[B]
+  override def flatMap[B](transformer: Transformer[A, LList[B]]): LList[B] = Empty()
 
   override def toString: String = "[]"
 }
 
-class Cons[A](override val head: A, override val tail: LList[A]) extends LList[A] {
+case class Cons[A](override val head: A, override val tail: LList[A]) extends LList[A] {
   override def isEmpty: Boolean = false
 
-  override def ++(other: LList[A]): LList[A] = 
-    new Cons(this.head, this.tail ++ other)
+  override def ++(other: LList[A]): LList[A] =
+    Cons(this.head, this.tail ++ other)
 
   override def map[B](transformer: Transformer[A, B]): LList[B] =
-    new Cons(transformer.transform(this.head), this.tail.map(transformer))
+    Cons(transformer.transform(this.head), this.tail.map(transformer))
 
   override def filter(predicate: Predicate[A]): LList[A] =
-    if (predicate.test(this.head)) new Cons(this.head, this.tail.filter(predicate))
+    if (predicate.test(this.head)) Cons(this.head, this.tail.filter(predicate))
     else this.tail.filter(predicate)
 
   override def flatMap[B](transformer: Transformer[A, LList[B]]): LList[B] =
@@ -92,7 +98,7 @@ class Doubler extends Transformer[Int, Int] {
 
 class DoublerList extends Transformer[Int, LList[Int]] {
   override def transform(element: Int): LList[Int] =
-    new Cons(element, new Cons(element * 2, new Empty))
+    Cons(element, Cons(element * 2, Empty()))
 }
 
 class StringToIntTransformer extends Transformer[String, Int] {
@@ -101,19 +107,19 @@ class StringToIntTransformer extends Transformer[String, Int] {
 
 object LListTest {
   def main(args: Array[String]): Unit = {
-    val empty = new Empty[Int]
+    val empty = Empty[Int]()
 
     println(empty)
     println(empty.isEmpty)
 
-    val firstThreeNumbers = new Cons(1, new Cons(2, new Cons(3, empty)))
+    val firstThreeNumbers = Cons(1, Cons(2, Cons(3, empty)))
     val firstThreeNumbers2 = empty.add(1).add(2).add(3)
 
     println(firstThreeNumbers)
     println(firstThreeNumbers2)
     println(firstThreeNumbers2.isEmpty)
 
-    val someStrings = new Cons("dog", new Cons("cat", new Empty))
+    val someStrings = Cons("dog", Cons("cat", Empty()))
 
     println(someStrings)
 
