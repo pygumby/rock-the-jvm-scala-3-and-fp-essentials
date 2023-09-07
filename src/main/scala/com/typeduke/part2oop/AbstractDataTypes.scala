@@ -51,12 +51,12 @@ object AbstractDataTypes {
   // - Traits are BEHAVIORS.
 
   // Scala type hierarchy
-  // Any
-  // |_ AnyRef - all classes we write
-  //    |_ scala.Null - the null reference
-  // |_ AnyVal - the primitive types
-  //    |_ Int, Boolean, Char,
-  // |_ scala.Nothing
+  // `Any`
+  // |_ `AnyRef` - All classes we write
+  //    |_ `scala.Null` - The null reference
+  // |_ `AnyVal` - The primitive types
+  //    |_ `Int`, `Boolean`, `Char`, ...
+  // |_ `scala.Nothing`
 
   val aNonExistentAnimal: Animal = null
   // val anInt: Int = throw new NullPointerException // Only way to "instantiate" the type `Nothing`
