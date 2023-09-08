@@ -33,9 +33,5 @@ object Generics {
   val firstTwoNumbers2 = MyList.fromTwoElements(1, 2)
   val firstTwoNumbers3 = new NonEmpty(1, new NonEmpty(2, new Empty))
 
-  /* Exercise 1
-   * Genericize `LList`
-   */
-
   def main(args: Array[String]): Unit = {}
 }
