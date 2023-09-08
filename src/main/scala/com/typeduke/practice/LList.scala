@@ -22,8 +22,12 @@ import scala.annotation.tailrec
 
 /* Exercise 2
  * Case classes
- * 
+ *
  * Find out where case classes make sense for `LList` and apply the respective changes.
+ */
+
+/* Exercise 3
+ * Implement a `find` method.
  */
 
 // Singly linked list
@@ -78,6 +82,13 @@ case class Cons[A](override val head: A, override val tail: LList[A]) extends LL
 
     s"[${concatenateElements(this.tail, s"${this.head}")}]"
   }
+}
+
+object LList {
+  def find[A](list: LList[A], predicate: Predicate[A]): A =
+    if (list.isEmpty) throw new NoSuchElementException
+    else if (predicate.test(list.head)) list.head
+    else find(list.tail, predicate)
 }
 
 trait Predicate[T] {
@@ -140,5 +151,12 @@ object LListTest {
     // `flatMap` tests
     val flattenedList = firstThreeNumbers.flatMap(new DoublerList)
     println(flattenedList)
+
+    // `find` tests
+    println(LList.find(firstThreeNumbers, new EvenPredicate)) // 2
+    // Should throw a `NoSuchElementException`
+    // println(LList.find(firstThreeNumbers, new Predicate[Int] {
+    //   override def test(element: Int): Boolean = element > 5
+    // }))
   }
 }
