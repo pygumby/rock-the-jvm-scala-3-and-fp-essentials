@@ -19,7 +19,7 @@ object PackagesImports {
 
   // `import` everything
   import com.typeduke.practice.*
-  val aPredicate: Predicate[Int] = ???
+  // val aPredicate: Predicate[Int] = ??? // `Predicate[Int]` has been replaced with `T => Boolean`.
 
   // `import` multiple symbols
   import PhysicsConstants.{SPEED_OF_LIGHT, EARTH_GRAVITY}
