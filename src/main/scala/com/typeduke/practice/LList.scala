@@ -1,6 +1,7 @@
 package com.typeduke.practice
 
 import scala.annotation.tailrec
+import com.typeduke.part3fp.AnonymousFunctions.doubler
 
 /* Exercise 1
  * LList extension
@@ -32,6 +33,10 @@ import scala.annotation.tailrec
 
 /* Exercise 4
  * Replace `Predicate` and `Transformer` with appropriate function types.
+ */
+
+/* Exercise 5
+ * Replace all `FunctionN` instantiations with lambdas.
  */
 
 // Singly linked list
@@ -96,12 +101,11 @@ object LList {
 }
 
 // The following traits have been replaced with function types:
-
 // `Predicate[T]` has been replaced with `T => Boolean`.
 // trait Predicate[T] {
 //   def test(element: T): Boolean
 // }
-
+//
 // `Transformer[A, B]` has been replaced with `A = B`.
 // trait Transformer[A, B] {
 //   def transform(element: A): B
@@ -125,43 +129,52 @@ object LListTest {
 
     println(someStrings)
 
-    val evenPredicate = new Function1[Int, Boolean] {
-      override def apply(element: Int): Boolean = element % 2 == 0
-    }
-
-    val doubler = new Function1[Int, Int] {
-      override def apply(element: Int): Int = element * 2
-    }
-
-    val doublerList = new Function1[Int, LList[Int]] {
-      override def apply(element: Int): LList[Int] =
-        Cons(element, Cons(element * 2, Empty()))
-    }
-
-    val stringToIntTransformer = new Function1[String, Int] {
-      override def apply(element: String): Int = element.toInt
-    }
+    // The following functions have been replaced with in-place lambdas:
+    // val evenPredicate = new Function1[Int, Boolean] {
+    //   override def apply(element: Int): Boolean = element % 2 == 0
+    // }
+    //
+    // val doubler = new Function1[Int, Int] {
+    //   override def apply(element: Int): Int = element * 2
+    // }
+    //
+    // val doublerList = new Function1[Int, LList[Int]] {
+    //   override def apply(element: Int): LList[Int] =
+    //     Cons(element, Cons(element * 2, Empty()))
+    // }
+    //
+    // val stringToIntTransformer = new Function1[String, Int] {
+    //   override def apply(element: String): Int = element.toInt
+    // }
 
     // `map` tests
-    val numbersDoubled = firstThreeNumbers.map(doubler)
-    println(numbersDoubled)
-    val numbersNested = firstThreeNumbers.map(doublerList)
-    println(numbersNested)
+    // val numbersDoubled = firstThreeNumbers.map(doubler)
+    val numbersDoubled2 = firstThreeNumbers.map(x => x * 2)
+    val numbersDoubled3 = firstThreeNumbers.map(_ * 2)
+    println(numbersDoubled3)
+
+    // val numbersNested = firstThreeNumbers.map(doublerList)
+    val numbersNested2 = firstThreeNumbers.map(elem => Cons(elem, Cons(elem * 2, Empty())))
+    println(numbersNested2)
 
     // `filter` tests
-    val onlyEvenNumbers = firstThreeNumbers.filter(evenPredicate)
-    println(onlyEvenNumbers)
+    // val onlyEvenNumbers = firstThreeNumbers.filter(evenPredicate)
+    val onlyEvenNumbers2 = firstThreeNumbers.filter(elem => elem % 2 == 0)
+    val onlyEvenNumbers3 = firstThreeNumbers.filter(_ % 2 == 0)
+    println(onlyEvenNumbers3)
 
     // `concatenation` tests
     val listInBothWays = firstThreeNumbers ++ firstThreeNumbers2
     println(listInBothWays)
 
     // `flatMap` tests
-    val flattenedList = firstThreeNumbers.flatMap(doublerList)
-    println(flattenedList)
+    // val flattenedList = firstThreeNumbers.flatMap(doublerList)
+    val flattenedList2 = firstThreeNumbers.flatMap(elem => Cons(elem, Cons(elem * 2, Empty())))
+    println(flattenedList2)
 
     // `find` tests
-    println(LList.find(firstThreeNumbers, evenPredicate)) // 2
+    // println(LList.find(firstThreeNumbers, evenPredicate)) // 2
+    println(LList.find(firstThreeNumbers, _ % 2 == 0)) // 2
     // Should throw a `NoSuchElementException`
     // println(LList.find(firstThreeNumbers, new Predicate[Int] {
     //   override def test(element: Int): Boolean = element > 5
