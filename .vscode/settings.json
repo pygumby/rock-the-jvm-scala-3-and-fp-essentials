@@ -27,5 +27,8 @@
   "explorer.sortOrder": "type",
   "files.watcherExclude": {
     "**/target": true
-  }
+  },
+
+  // Metals
+  "metals.superMethodLensesEnabled": false
 }
