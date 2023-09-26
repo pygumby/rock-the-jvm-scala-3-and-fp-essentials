@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import com.typeduke.part3fp.AnonymousFunctions.doubler
 
 /* Exercise 1
- * LList extension
+ * LList extensions
  *
  * 1. Generic trait `Predicate[T]` with a little method `test(T) => Boolean`
  * 2. Generic trait `Transformer[A, B]` with a method `transform(A) => B`
@@ -39,6 +39,20 @@ import com.typeduke.part3fp.AnonymousFunctions.doubler
  * Replace all `FunctionN` instantiations with lambdas.
  */
 
+/* Exercise 6
+ * HOF extensions
+ *
+ * 1. `forEach(f: A => Unit): Unit`
+ *    Example: `[1, 2, 3].foreach(println)`
+ * 2. `sort(compare: (A, A) => Int): LList[A]`
+ *    Example: `[3, 2, 1].sort(_ - _)` returns `[1, 2, 3]`
+ *    Hint: Use insertion sort
+ * 3. `zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C]`
+ *    Example: `[1, 2, 3].zipWith([4, 5, 6], _ * _)` returns `[4, 10, 18]`
+ * 4. `foldLeft[B](start: B)(operator: (B, A) => B): B`
+ *    Example: `[1, 2, 3].foldLeft[Int](0)(_ + _)` returns 6
+ */
+
 // Singly linked list
 abstract class LList[A] {
   def head: A
@@ -51,6 +65,11 @@ abstract class LList[A] {
   def map[B](transformer: A => B): LList[B]
   def filter(predicate: A => Boolean): LList[A]
   def flatMap[B](transformer: A => LList[B]): LList[B]
+
+  def forEach(f: A => Unit): Unit
+  def sort(compare: (A, A) => Int): LList[A]
+  def zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C]
+  def foldLeft[B](start: B)(operator: (B, A) => B): B
 }
 
 case class Empty[A]() extends LList[A] {
@@ -65,6 +84,15 @@ case class Empty[A]() extends LList[A] {
   override def flatMap[B](transformer: A => LList[B]): LList[B] = Empty()
 
   override def toString: String = "[]"
+
+  override def forEach(f: A => Unit): Unit = ()
+  override def sort(compare: (A, A) => Int): LList[A] = this
+
+  override def zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C] =
+    if (!list.isEmpty) throw new IllegalArgumentException("Zipping lists of unequal length.")
+    else Empty()
+
+  override def foldLeft[B](start: B)(operator: (B, A) => B): B = start
 }
 
 case class Cons[A](override val head: A, override val tail: LList[A]) extends LList[A] {
@@ -91,6 +119,29 @@ case class Cons[A](override val head: A, override val tail: LList[A]) extends LL
 
     s"[${concatenateElements(this.tail, s"${this.head}")}]"
   }
+
+  override def forEach(f: A => Unit): Unit = {
+    f(this.head)
+    this.tail.forEach(f)
+  }
+
+  // Insertion sort, O(n^2), stack recursive
+  override def sort(compare: (A, A) => Int): LList[A] = {
+    def insert(elem: A, sortedList: LList[A]): LList[A] = 
+      if (sortedList.isEmpty) Cons(elem, Empty())
+      else if (compare(elem, sortedList.head) <= 0) Cons(elem, sortedList)
+      else Cons(sortedList.head, insert(elem, sortedList.tail))
+
+    val sortedTail = this.tail.sort(compare)
+    insert(this.head, sortedTail)
+  }
+
+  override def zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C] = 
+    if (list.isEmpty) throw new IllegalArgumentException("Zipping lists of unequal length.")
+    else Cons(zip(this.head, list.head), this.tail.zipWith(list.tail, zip))
+
+  override def foldLeft[B](start: B)(operator: (B, A) => B): B =
+    this.tail.foldLeft(operator(start, head))(operator)
 }
 
 object LList {
@@ -125,7 +176,7 @@ object LListTest {
     println(firstThreeNumbers2)
     println(firstThreeNumbers2.isEmpty)
 
-    val someStrings = Cons("dog", Cons("cat", Empty()))
+    val someStrings = Cons("dog", Cons("cat", Cons("crocodile", Empty())))
 
     println(someStrings)
 
@@ -163,7 +214,7 @@ object LListTest {
     val onlyEvenNumbers3 = firstThreeNumbers.filter(_ % 2 == 0)
     println(onlyEvenNumbers3)
 
-    // `concatenation` tests
+    // `concatenation` test
     val listInBothWays = firstThreeNumbers ++ firstThreeNumbers2
     println(listInBothWays)
 
@@ -179,5 +230,19 @@ object LListTest {
     // println(LList.find(firstThreeNumbers, new Predicate[Int] {
     //   override def test(element: Int): Boolean = element > 5
     // }))
+
+    // `forEach` test
+    firstThreeNumbers.forEach(print)
+    println()
+
+    // `sort` test
+    println(firstThreeNumbers2.sort(_ - _))
+
+    // `zipWith` test
+    val zippedList = firstThreeNumbers.zipWith(someStrings, (n, s) => s"$n - $s")
+    println(zippedList)
+
+    // `foldLeft` test
+    println(firstThreeNumbers.foldLeft(0)(_ + _))
   }
 }
