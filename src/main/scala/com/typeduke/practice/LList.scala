@@ -64,6 +64,8 @@ abstract class LList[A] {
 
   def map[B](transformer: A => B): LList[B]
   def filter(predicate: A => Boolean): LList[A]
+  // In the standard library, `withFilter` is implemented with lazy evaluation -- out of scope here.
+  def withFilter(predicate: A => Boolean): LList[A] = this.filter(predicate)
   def flatMap[B](transformer: A => LList[B]): LList[B]
 
   def forEach(f: A => Unit): Unit
@@ -127,7 +129,7 @@ case class Cons[A](override val head: A, override val tail: LList[A]) extends LL
 
   // Insertion sort, O(n^2), stack recursive
   override def sort(compare: (A, A) => Int): LList[A] = {
-    def insert(elem: A, sortedList: LList[A]): LList[A] = 
+    def insert(elem: A, sortedList: LList[A]): LList[A] =
       if (sortedList.isEmpty) Cons(elem, Empty())
       else if (compare(elem, sortedList.head) <= 0) Cons(elem, sortedList)
       else Cons(sortedList.head, insert(elem, sortedList.tail))
@@ -136,7 +138,7 @@ case class Cons[A](override val head: A, override val tail: LList[A]) extends LL
     insert(this.head, sortedTail)
   }
 
-  override def zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C] = 
+  override def zipWith[B, C](list: LList[B], zip: (A, B) => C): LList[C] =
     if (list.isEmpty) throw new IllegalArgumentException("Zipping lists of unequal length.")
     else Cons(zip(this.head, list.head), this.tail.zipWith(list.tail, zip))
 
