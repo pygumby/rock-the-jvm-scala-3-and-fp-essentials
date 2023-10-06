@@ -9,7 +9,7 @@ object TuplesMaps {
   // Syntactic sugar for tuples of two elements
   val aTuple2 = 2 -> "Rock the JVM" // `(2, "Rock the JVM")` == `2 -> "Rock the JVM"`
 
-  // Maps = Associations between keys and values
+  // Maps = associations between keys and values
   val aMap = Map()
   val phoneBook: Map[String, Int] = Map(
     "Jim" -> 555,
