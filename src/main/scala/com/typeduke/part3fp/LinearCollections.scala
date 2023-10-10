@@ -5,7 +5,7 @@ import scala.util.Random
 object LinearCollections {
   // `Seq`
   def testSeqs(): Unit = {
-    // `Seq`s provide well-defined ordering and indexing.
+    // Seqs provide well-defined ordering and indexing.
     val aSeq = Seq(4, 2, 3, 1)
 
     // Main API: indexing an element
@@ -54,31 +54,31 @@ object LinearCollections {
   def testArrays(): Unit = {
     val anArray = Array(1, 2, 3, 4, 5, 6) // `int[]` on the JVM
 
-    // `Array`s support most `Seq` APIs...
-    // ...but they are not `Seq`s!
-    // Yet, they can be converted to `Seq`s.
+    // `Array` supports most `Seq` APIs...
+    // ...but it does not a `Seq`!
+    // Yet, it can be converted to `Seq`.
     val aSeq: Seq[Int] = anArray.toIndexedSeq
 
-    // `Array`s are MUTABLE!
-    anArray.update(2, 30) // No new `Array` is allocated.
+    // Arrays are MUTABLE!
+    anArray.update(2, 30) // No new array is allocated.
   }
 
   // `Vector`
   def testVectors(): Unit = {
-    // `Vector`s are `Seq`s, suitable for large amounts of data.
+    // Vectors are seqs, suitable for large amounts of data.
     // They conform to the `Seq` API and don't add anything on top -- but they're fast.
     val aVector: Vector[Int] = Vector(1, 2, 3, 4, 5, 6)
   }
 
   // `Set`
   def testSets(): Unit = {
-    // `Set`s disallow duplicates.
+    // Sets disallow duplicates.
     val aSet = Set(1, 2, 3, 4, 5, 4) // 4 won't be added twice!
 
-    // `Set`s are usually implemented in terms of `equals` and `hashCode`.
+    // Sets are usually implemented in terms of `equals` and `hashCode`.
     // A popular implementation of `Set` is `HashSet`.
 
-    // Main API: test whether an element is in the `Set`
+    // Main API: test whether an element is in the set
     val containsThree = aSet.contains(3) // true
     val containsThree2 = aSet(3) // equivalent to the above
 
@@ -101,7 +101,7 @@ object LinearCollections {
     val anIntersection2 = aSet & anotherSet // equivalent to the above
   }
 
-  // Let's naively compare the performance of `List`s and `Vector`s.
+  // Let's naively compare the performance of `List` and `Vector`.
   def smallBenchmark(): Unit = {
     val maxRuns = 1000
     val maxCapacity = 1000000

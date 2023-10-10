@@ -10,7 +10,7 @@ object HofsCurrying {
   // Quick exercise
   val superFun: (Int, (String, (Int => Boolean)) => Int) => (Int => Int) = (x, fun) => y => x + y
 
-  // Examples: map, flatMap, filter
+  // Examples: `map`, `flatMap`, `filter`
 
   // More examples
   @tailrec
@@ -36,8 +36,8 @@ object HofsCurrying {
   // Currying is also available for methods
   def curriedFormatter(fmt: String)(x: Double): String = fmt.format(x)
 
-  val standardFormat: (Double => String) = curriedFormatter("%4.2f") // x => "%4.2f".format(x)
-  val preciseFormat: (Double => String) = curriedFormatter("%10.8f") // x => "%10.8f".format(x)
+  val standardFormat: (Double => String) = curriedFormatter("%4.2f") // `x => "%4.2f".format(x)`
+  val preciseFormat: (Double => String) = curriedFormatter("%10.8f") // `x => "%10.8f".format(x)`
 
   /* Exercise 1
    * Create functions that apply and un-apply currying to a given function.

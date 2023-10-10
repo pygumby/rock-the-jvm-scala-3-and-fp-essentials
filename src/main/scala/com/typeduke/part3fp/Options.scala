@@ -3,7 +3,7 @@ package com.typeduke.part3fp
 import scala.util.Random
 
 object Options {
-  // `Option`s == "collections" with at most one value
+  // Options == "collections" with at most one value
   val anOption: Option[Int] = Option(42)
   val anEmptyOption: Option[Int] = Option.empty
 
@@ -22,14 +22,14 @@ object Options {
   val aFilteredOption = anIncrementedOption.filter(_ % 2 == 0) // `None`
   val aFlatMappedOption = anOption.flatMap(value => Option(value + 10)) // `Some(420)`
 
-  // Purpose of `Option`s: to work with unsafe APIs
+  // Purpose of options: to work with unsafe APIs
   def unsafeMethod(): String = null
   def fallbackMethod(): String = "Some valid result"
 
   // "Defensive style" of dealing with unsafe APIs: `null` checks
   val stringLength = if (unsafeMethod() == null) -1 else unsafeMethod().length
 
-  // "`Option`-style": no `null` checks
+  // "Option-style": no `null` checks
   // Passing `null` into the `apply` method creates an empty `Option`.
   val stringLengthOption = Option(unsafeMethod()).map(_.length())
 
@@ -84,18 +84,18 @@ object Options {
   //     if (conn != null)
   //       conn.connect()
 
-  // `Option`-style solution
+  // Option-style solution
   val host = config.get("host")
   val port = config.get("port")
   val conn: Option[Connection] = host.flatMap(h => port.flatMap(p => Connection(h, p)))
   val connStatus: Option[String] = conn.map(_.connect())
 
-  // `Option`-style solution, compacted
+  // Option-style solution, compacted
   val connStatus2 = config
     .get("host")
     .flatMap(h => config.get("port").flatMap(p => Connection(h, p).map(_.connect())))
 
-  // `Option`-style solution, `for` comprehension
+  // Option-style solution, `for` comprehension
   val connStatus3 = for {
     h <- config.get("host")
     p <- config.get("port")

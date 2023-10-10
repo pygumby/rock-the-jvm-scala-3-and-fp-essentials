@@ -19,14 +19,14 @@ object TuplesMaps {
 
   // `Map`'s Core APIs
   val phoneBookHasDaniel = phoneBook.contains("Daniel")
-  val marysPhoneNumber = phoneBook("Mary") // would throw an `Exception`, hadn't we set a default
+  val marysPhoneNumber = phoneBook("Mary") // would throw an exception, hadn't we set a default
 
   // Add a pair
   val newPair = "Mary" -> 678
   val newPhoneBook = phoneBook + newPair
 
   // Remove a key
-  val phoneBookWithoutDaniel = phoneBook - "Daniel" // This will also return a new `Map`.
+  val phoneBookWithoutDaniel = phoneBook - "Daniel" // This will also return a new map.
 
   // From `List` to `Map`
   val linearPhoneBook = List(
@@ -49,7 +49,7 @@ object TuplesMaps {
   // Mapping values
   val prefixNumbers = phoneBook.view.mapValues(number => s"0255-$number").toMap
 
-  // Other collections create `Map`s.
+  // Other collections create maps.
   val names = List("Bob", "James", "Angela", "Mary", "Daniel", "Jim")
   val nameGroupings = names.groupBy(name => name.charAt(0)) // `Map[Char, List[String]]`
 
