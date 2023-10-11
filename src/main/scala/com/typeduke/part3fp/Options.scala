@@ -71,7 +71,7 @@ object Options {
     val random = new Random()
 
     def apply(host: String, port: String): Option[Connection] =
-      if (random.nextBoolean()) Some(new Connection)
+      if (this.random.nextBoolean()) Some(new Connection)
       else None
   }
 
