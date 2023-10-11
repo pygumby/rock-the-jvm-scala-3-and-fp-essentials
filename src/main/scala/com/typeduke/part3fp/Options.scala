@@ -75,7 +75,7 @@ object Options {
       else None
   }
 
-  // "Defensive-style" solution
+  // Defensive-style solution
   // val host = config("host")
   // val port = config("port")
   // if (host != null)
