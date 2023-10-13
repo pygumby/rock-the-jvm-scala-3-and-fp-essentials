@@ -1,8 +1,6 @@
 package com.typeduke.part4power
 
 import scala.util.Random
-import com.typeduke.part2oop.Inheritance.Animal
-import scala.quoted.Expr
 
 object PatternMatching {
   // Pattern matching = `switch` on steroids
