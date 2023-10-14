@@ -110,12 +110,13 @@ object AllThePatterns {
   val numbers: List[Int] = List(1, 2, 3, 4)
 
   // It'll be the first case, as type arguments are removed at runtime.
-  val numbersMatch = numbers match {
-    case listOfStrings: List[String] => "A list of strings"
-    case listOfInts: List[Int]       => "A list of ints"
-  }
+  // Throws compiler warning, hence commented out
+  // val numbersMatch = numbers match {
+  //   case listOfStrings: List[String] => "A list of strings"
+  //   case listOfInts: List[Int]       => "A list of ints"
+  // }
 
   def main(args: Array[String]): Unit = {
-    println(numbersMatch)
+    // println(numbersMatch)
   }
 }
