@@ -21,7 +21,7 @@ object PatternMatching {
   val greeting = bob match {
     case Person(n, a) if a < 18 => s"Hi there, my name is $n and I'm $a years old." // `if` guard
     case Person(n, _)           => s"Hi there, my name is $n and I won't say my age."
-    // case _ => "I don't know who I am." // Unreachable, hence commented out
+    // case _ => "I don't know who I am." // Throws compiler warning, hence commented out
   }
 
   // Tips:
